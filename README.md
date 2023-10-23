@@ -1,3 +1,15 @@
+# Bun refactor todo list
+- [] Fix three remaining failing tests
+  - I think the failing tests might have to do with the crypto runtime patch not working as it works in Node.js
+  - Bun has a lot of Browser and Node.JS APIs which are available which may be causing a conflict somewhere
+  - All Node.JS APIs are not implemented yet so that could be another cause of incompatibility that will be resolved when Bun dev matures afa Node.JS feature parity
+- [] Get prettier working
+  - It may be the vscode addon that is broken: https://github.com/prettier/prettier-vscode/issues/3017
+- [] Finish setting up the build process and test the built package
+  - Running `build.ts` doesn't appear to do anything
+  - The bun CLI build command appears to work: `bun build --outdir lib --minify --splitting --target=node ./src/index.ts`
+  - The Bun documentation says you still have to use `tsc` to generate types
+
 # nostr-tools
 
 Tools for developing [Nostr](https://github.com/fiatjaf/nostr) clients.

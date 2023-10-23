@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
+    "types": ["bun-types"],
     "module": "esnext",
     "target": "esnext",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["esnext"],
     "declaration": true,
     "strict": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "emitDeclarationOnly": true,
     "outDir": "lib/types",
     "resolveJsonModule": true,
-    "rootDir": ".",
-    "allowImportingTsExtensions": true
+    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": true,
+    "noImplicitAny": true
   }
 }
