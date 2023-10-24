@@ -172,7 +172,6 @@ export function relayInit(
               return
             }
             case 'OK': {
-              console.log(data, 'data...')
               let id: string = data[1]
               let ok: boolean = data[2]
               let reason: string = data[3] || ''
