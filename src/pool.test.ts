@@ -107,8 +107,8 @@ describe('pool tests', () => {
     )
 
     // the actual received number will be greater than 2, but there will be no duplicates
-    const uniqueIdsCount = new Set(events.map(evt => evt.id)).size
-    expect(events.length).toEqual(uniqueIdsCount)
+    const uniqueEventCount = new Set(events.map(evt => evt.id)).size
+    expect(events.length).toEqual(uniqueEventCount)
 
     let relaysForAllEvents = events.map(event => pool.seenOn(event.id)).reduce((acc, n) => acc.concat(n), [])
     expect(relaysForAllEvents.length).toBeGreaterThanOrEqual(events.length)
