@@ -48,7 +48,7 @@ export function matchFilters(filters: Filter<number>[], event: Event<number>): b
 export function mergeFilters(...filters: Filter<number>[]): Filter<number> {
   const mergedProperties: {
     [key: string]: Set<string | number>,
-  } = {};
+  } = {}
   let limit, until, since
 
   for (let filter of filters) {
@@ -59,27 +59,28 @@ export function mergeFilters(...filters: Filter<number>[]): Filter<number> {
         property === 'authors' ||
         property[0] === '#'
       ) {
-        mergedProperties[property] = mergedProperties[property] || new Set();
+        mergedProperties[property] = mergedProperties[property] || new Set()
         for (let value of values as (string | number)[]) {
-          mergedProperties[property].add(value);
+          mergedProperties[property].add(value)
         }
       }
     }
 
-    if (filter.limit && (!limit || filter.limit > limit)) limit = filter.limit;
-    if (filter.until && (!until || filter.until > until)) until = filter.until;
-    if (filter.since && (!since || filter.since < since)) since = filter.since;
+    if (filter.limit && (!limit || filter.limit > limit)) limit = filter.limit
+    if (filter.until && (!until || filter.until > until)) until = filter.until
+    if (filter.since && (!since || filter.since < since)) since = filter.since
   }
 
-  return {
-    ...Object.entries(mergedProperties).reduce((previousProperties, [property, value]) => {
-      return {
-        ...previousProperties,
-        [property]: Array.from(value) ?? []
-      }
-    }, {}),
-    limit,
-    until,
-    since
-  };
+  const response: Filter<number> = Object.entries(mergedProperties).reduce((previousProperties, [currentProperty, value]) => {
+    return {
+      ...previousProperties,
+      [currentProperty]: Array.from(value) ?? []
+    }
+  }, {})
+
+  response.limit = limit
+  response.until = until
+  response.since = since
+
+  return response
 }
